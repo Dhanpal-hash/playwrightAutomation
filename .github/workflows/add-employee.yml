@@ -45,7 +45,7 @@ jobs:
           EMP_EMAIL: ${{ github.event.inputs.EMP_EMAIL }}
           EMP_PHONE: ${{ github.event.inputs.EMP_PHONE }}
           EMP_ADDR: ${{ github.event.inputs.EMP_ADDR }}
-          BASE_URL: "https://example.com"  # ⬅️ Change to your app URL
+          BASE_URL: "https://kolors-dev.rnit.ai/web/employees/add"  # ⬅️ Change to your app URL
         run: npx playwright test --reporter=html
 
       - name: Upload HTML report

@@ -5,7 +5,7 @@ export default defineConfig({
   retries: 1,
   reporter: [['html', { outputFolder: 'playwright-report' }]],
   use: {
-    baseURL: 'https://example.com',
+    baseURL: 'https://kolors-dev.rnit.ai/web/employees/add',
     headless: true,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
