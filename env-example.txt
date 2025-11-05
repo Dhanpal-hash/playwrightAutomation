@@ -1,0 +1,5 @@
+EMP_FIRST=Michael
+EMP_LAST=Smith
+EMP_EMAIL=michael.smith@example.com
+EMP_PHONE=9876543210
+EMP_ADDR=456 Oak Avenue

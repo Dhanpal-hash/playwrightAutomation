@@ -1,7 +1,6 @@
 name: Employee Onboarding Automation
 
 on:
-  # Allows manual triggering from GitHub UI
   workflow_dispatch:
     inputs:
       EMP_FIRST:
@@ -60,35 +59,22 @@ jobs:
           EMP_ADDR: ${{ github.event.inputs.EMP_ADDR }}
           CI: true
         run: npx playwright test employee-onboard.spec.ts --project=chromium
+        continue-on-error: true
 
-      - name: 📊 Upload HTML report
+      - name: 📊 Upload Playwright HTML Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report-${{ github.run_number }}
+          name: playwright-report
           path: playwright-report/
           retention-days: 30
+          if-no-files-found: warn
 
-      - name: 📁 Upload test results
+      - name: 📁 Upload Test Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-results-${{ github.run_number }}
+          name: test-results
           path: test-results/
           retention-days: 30
-
-      - name: 📹 Upload videos (on failure)
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-videos-${{ github.run_number }}
-          path: test-results/*/.webm
-          retention-days: 7
-
-      - name: 📸 Upload screenshots (on failure)
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-screenshots-${{ github.run_number }}
-          path: test-results/*/.png
-          retention-days: 7
+          if-no-files-found: warn

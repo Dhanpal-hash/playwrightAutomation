@@ -1,15 +1,25 @@
 {
-  "name": "playwright-typescript-framework",
+  "name": "playwright-employee-tests",
   "version": "1.0.0",
-  "description": "Complete Playwright Automation Framework using TypeScript",
+  "description": "Playwright tests for employee management",
   "scripts": {
-    "test": "npx playwright test",
-    "test:headed": "npx playwright test --headed",
-    "test:debug": "npx playwright test --debug",
-    "report": "npx playwright show-report"
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report"
   },
+  "keywords": [
+    "playwright",
+    "testing",
+    "automation"
+  ],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.56.1",
-    "typescript": "^5.5.0"
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.10.0",
+    "dotenv": "^17.2.3",
+    "typescript": "^5.3.0"
   }
 }

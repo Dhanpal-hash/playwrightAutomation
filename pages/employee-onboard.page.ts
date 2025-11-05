@@ -1,7 +1,6 @@
 import { Page } from '@playwright/test';
 
 export class AddEmployeePage {
-
   constructor(private page: Page) {}
 
   async navigateToAddEmployee() {
@@ -17,5 +16,4 @@ export class AddEmployeePage {
     await this.page.fill('input[name="empAddress"]', empData.address);
     await this.page.click('button:has-text("Next")');
   }
-
 }
