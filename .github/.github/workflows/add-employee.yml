@@ -1,0 +1,49 @@
+name: Add Employee Automation
+
+on:
+  workflow_dispatch:   # This allows manual run (Run button)
+    inputs:
+      firstName:
+        description: "Employee First Name"
+        required: true
+      lastName:
+        description: "Employee Last Name"
+        required: true
+      email:
+        description: "Employee Email"
+        required: true
+      phone:
+        description: "Employee Phone Number"
+        required: true
+      address:
+        description: "Employee Address"
+        required: true
+
+jobs:
+  run-test:
+    runs-on: ubuntu-latest
+
+    env:
+      EMP_FIRST: ${{ github.event.inputs.firstName }}
+      EMP_LAST: ${{ github.event.inputs.lastName }}
+      EMP_EMAIL: ${{ github.event.inputs.email }}
+      EMP_PHONE: ${{ github.event.inputs.phone }}
+      EMP_ADDR: ${{ github.event.inputs.address }}
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Install Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright Tests
+        run: npx playwright test

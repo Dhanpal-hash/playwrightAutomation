@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
     "module": "commonjs",
+    "target": "ESNext",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "outDir": "dist"
-  },
-  "include": ["tests", "pages", "utils", "fixtures"]
+    "baseUrl": ".",
+    "paths": {
+      "": ["./"]
+    }
+  }
 }
