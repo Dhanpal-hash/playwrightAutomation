@@ -1,28 +1,27 @@
 name: Add Employee Automation
 
 on:
-  workflow_dispatch:   # allows manual trigger
+  workflow_dispatch:
     inputs:
       EMP_FIRST:
-        description: 'Employee First Name'
+        description: "Employee First Name"
         required: true
-        default: 'John'
       EMP_LAST:
-        description: 'Employee Last Name'
+        description: "Employee Last Name"
         required: true
-        default: 'Doe'
       EMP_EMAIL:
-        description: 'Employee Email'
+        description: "Employee Email"
         required: true
-        default: 'john.doe@example.com'
+      EMP_PHONE:
+        description: "Employee Phone"
+        required: true
+      EMP_ADDR:
+        description: "Employee Address"
+        required: true
 
 jobs:
   run-test:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: ./   
 
     steps:
       - name: Checkout repository
@@ -44,6 +43,9 @@ jobs:
           EMP_FIRST: ${{ github.event.inputs.EMP_FIRST }}
           EMP_LAST: ${{ github.event.inputs.EMP_LAST }}
           EMP_EMAIL: ${{ github.event.inputs.EMP_EMAIL }}
+          EMP_PHONE: ${{ github.event.inputs.EMP_PHONE }}
+          EMP_ADDR: ${{ github.event.inputs.EMP_ADDR }}
+          BASE_URL: "https://example.com"  # ⬅️ Change to your app URL
         run: npx playwright test --reporter=html
 
       - name: Upload HTML report
