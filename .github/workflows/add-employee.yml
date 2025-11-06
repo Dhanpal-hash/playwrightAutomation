@@ -6,23 +6,18 @@ on:
       EMP_FIRST:
         description: 'Employee First Name'
         required: true
-        default: 'John'
       EMP_LAST:
         description: 'Employee Last Name'
         required: true
-        default: 'Doe'
       EMP_EMAIL:
         description: 'Employee Email'
         required: true
-        default: 'john.doe@company.com'
       EMP_FATHER:
         description: "Father's Name"
         required: false
-        default: 'Robert'
       EMP_PHONE:
         description: 'Phone Number'
         required: false
-        default: '9876543210'
 
 jobs:
   test:
