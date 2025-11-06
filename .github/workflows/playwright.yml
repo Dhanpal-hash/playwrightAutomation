@@ -6,23 +6,23 @@ on:
       EMP_FIRST:
         description: "Employee First Name"
         required: true
-        default: "John"
+        default: ""
       EMP_LAST:
         description: "Employee Last Name"
         required: true
-        default: "Doe"
+        default: ""
       EMP_EMAIL:
         description: "Employee Email"
         required: true
-        default: "john.doe@example.com"
+        default: ""
       EMP_PHONE:
         description: "Employee Phone"
         required: true
-        default: "1234567890"
+        default: ""
       EMP_ADDR:
         description: "Employee Address"
         required: true
-        default: "123 Main Street"
+        default: ""
 
 jobs:
   run-test:
