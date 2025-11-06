@@ -19,7 +19,7 @@ export class AddEmployeePage {
     // Step 4: Wait until the "First Name" textbox appears
     await this.page.getByRole('textbox', { name: /first/i }).first().waitFor({ state: 'visible', timeout: 10000 });
 
-    console.log('✅ Add Employee form is open and ready');
+    console.log(' Add Employee form is open and ready');
   }
 
   async fillEmployeeDetails(empData: any) {
@@ -59,6 +59,6 @@ export class AddEmployeePage {
         console.log('Could not select gender from dropdown');
       }
     }
-    console.log('✅ Form filled successfully!');
+    console.log(' Form filled successfully!');
   }
 }
