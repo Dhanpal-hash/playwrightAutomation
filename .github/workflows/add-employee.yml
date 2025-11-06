@@ -1,4 +1,4 @@
-name: Employee Onboarding Automation
+name: Playwright Employee Onboarding Tests
 
 on:
   workflow_dispatch:
@@ -7,74 +7,65 @@ on:
         description: 'Employee First Name'
         required: true
         default: 'John'
-        type: string
       EMP_LAST:
         description: 'Employee Last Name'
         required: true
         default: 'Doe'
-        type: string
       EMP_EMAIL:
         description: 'Employee Email'
         required: true
-        default: 'john.doe@example.com'
-        type: string
+        default: 'john.doe@company.com'
+      EMP_FATHER:
+        description: "Father's Name"
+        required: false
+        default: 'Robert'
       EMP_PHONE:
-        description: 'Employee Phone Number'
-        required: true
+        description: 'Phone Number'
+        required: false
         default: '9876543210'
-        type: string
-      EMP_ADDR:
-        description: 'Employee Address'
-        required: true
-        default: '123 Main Street, New York'
-        type: string
 
 jobs:
-  playwright-tests:
-    name: Run Playwright Employee Tests
+  test:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     
     steps:
-      - name: 📥 Checkout repository
-        uses: actions/checkout@v4
-
-      - name: 🔧 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-
-      - name: 📦 Install dependencies
-        run: npm ci
-
-      - name: 🎭 Install Playwright browsers
-        run: npx playwright install --with-deps chromium
-
-      - name: 🧪 Run Playwright tests
-        env:
-          EMP_FIRST: ${{ github.event.inputs.EMP_FIRST }}
-          EMP_LAST: ${{ github.event.inputs.EMP_LAST }}
-          EMP_EMAIL: ${{ github.event.inputs.EMP_EMAIL }}
-          EMP_PHONE: ${{ github.event.inputs.EMP_PHONE }}
-          EMP_ADDR: ${{ github.event.inputs.EMP_ADDR }}
-          CI: true
-        run: npx playwright test employee-onboard.spec.ts --project=chromium
-        continue-on-error: true
-
-      - name: 📊 Upload Playwright HTML Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
-          if-no-files-found: warn
-
-      - name: 📁 Upload Test Results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: test-results/
-          retention-days: 30
-          if-no-files-found: warn
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps chromium
+    
+    - name: Run Playwright tests
+      env:
+        BASE_URL: https://kolors-dev.rnit.ai
+        EMP_FIRST: ${{ github.event.inputs.EMP_FIRST }}
+        EMP_LAST: ${{ github.event.inputs.EMP_LAST }}
+        EMP_EMAIL: ${{ github.event.inputs.EMP_EMAIL }}
+        EMP_FATHER: ${{ github.event.inputs.EMP_FATHER }}
+        EMP_PHONE: ${{ github.event.inputs.EMP_PHONE }}
+      run: npx playwright test employee-onboard.spec.ts
+    
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
+    
+    - name: Upload test screenshots/videos
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results
+        path: test-results/
+        retention-days: 30
