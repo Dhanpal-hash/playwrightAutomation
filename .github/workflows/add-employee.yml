@@ -22,10 +22,10 @@ on:
         description: 'Employee Gender'
         required: true
       DOJ_DAY:
-        description: 'Date of Joining Day'
+        description: 'Date of Joining (mm/dd/yyyy)'
         required: true
       DOB_DAY:
-        description: 'Date of Birth Day'
+        description: 'Date of Birth (mm/dd/yyyy)'
         required: true
       USERNAME:
         description: 'Login Username'
