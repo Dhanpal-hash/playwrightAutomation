@@ -1,39 +1,89 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/loginPage';
-import { AddEmployeePage } from '../pages/employee-onboard.page';
+import { EmployeeOnboardPage } from '../pages/employee-onboard.page';
 
-test.describe('Employee Management', () => {
-  test('should successfully add a new employee with valid details', async ({ page }) => {
+test.describe('Employee Onboarding End-to-End', () => {
+  test('should fill and submit entire form', async ({ page }) => {
     const loginPage = new LoginPage(page);
-    const addEmployeePage = new AddEmployeePage(page);
 
-    // Get employee data from environment variables (GitHub Actions inputs)
-    const employeeData = {
-      firstName: process.env.EMP_FIRST || '',
-      lastName: process.env.EMP_LAST || '',
-      email: process.env.EMP_EMAIL || '',
-      fatherName: process.env.EMP_FATHER || '',
-      phone: process.env.EMP_PHONE || ''
-    };
-
-    // Log the data being used (for debugging)
-    console.log('Testing with employee ', employeeData);
-
-    // Step 1: Authenticate
     await test.step('Login with admin credentials', async () => {
       await loginPage.login('Administrator', 'Admin@123');
     });
 
-    // Step 2: Navigate to Add Employee section
-    await test.step('Navigate to Add Employee page', async () => {
-      await addEmployeePage.navigateToAddEmployee();
+    const onboardPage = new EmployeeOnboardPage(page);
+    await onboardPage.navigateToAddEmployee();
+
+    await onboardPage.fillEmployeeDetails({
+      firstName: process.env.EMP_FIRST,
+      lastName: process.env.EMP_LAST,
+      email: process.env.EMP_EMAIL,
+      fatherName: process.env.EMP_FATHER,
+      phone: process.env.EMP_PHONE,
+      role: '',
+      status: '',
+      gender: process.env.GENDER,
+      maritalStatus: '',
+      bloodGroup: '',
+      defaultShift: '',
+      holidayList: '',
+      grade: '',
+      dateOfJoining: process.env.DOJ_DAY,
+      dateOfBirth: process.env.DOB_DAY
     });
 
-    // Step 3: Fill employee details
-    await test.step('Fill employee details', async () => {
-      await addEmployeePage.fillEmployeeDetails(employeeData);
+    await onboardPage.fillCompanyDetails({
+      leavePolicy: '',
+      reportsTo: '',
+      designation: '',
+      homeBranch: '',
+      department: '',
+      employeeBranches: '',
+      employmentType: '',
+      orgName: ''
     });
 
-    console.log('✅ Employee onboarding test completed successfully!');
+    await onboardPage.fillEmergencyContact({
+      name: '',
+      phone: '',
+      relationship: ''
+    });
+
+    await onboardPage.fillBankDetails({
+      bankName: '',
+      accountNumber: '',
+      ifsc: ''
+    });
+
+    await onboardPage.fillSalaryDetails({ ctc: 900000 });
+
+    await onboardPage.attachDocuments({
+      idProofPath: '',
+      addressProofPath: '',
+      idDocNumber: '',
+      addressDocNumber: ''
+    });
+
+    await onboardPage.fillPassportDetails({
+      passportNumber: '',
+      passportIssueDate: '',
+      passportExpiryDate: ''
+    });
+
+    await onboardPage.fillEducationDetails([
+      { degree: 'B.Tech', institution: 'IIT', year: '2021', score: '8.5' },
+      { degree: 'M.Tech', institution: 'IIT', year: '2023', score: '9.0' }
+    ]);
+
+    await onboardPage.fillInternalExperience([
+      {
+        designation: '',
+        branch: '',
+        department: '',
+        from: '',
+        to: ''
+      }
+    ]);
+
+    await onboardPage.submit();
   });
 });

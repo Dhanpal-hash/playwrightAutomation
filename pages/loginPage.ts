@@ -4,20 +4,14 @@ export class LoginPage {
   constructor(private page: Page) {}
 
   async login(username: string, password: string) {
-    // Navigate to login page (base URL should be the root)
+    if (!username || !password) {
+      throw new Error('Username or password is missing. Ensure environment variables USERNAME and PASSWORD are set.');
+    }
     await this.page.goto('/');
-    
-    // Wait for login form to be visible
-    await this.page.waitForLoadState('networkidle');
-    
-    // Fill in credentials
-    await this.page.fill('input[name="username"]', username);
-    await this.page.fill('input[name="password"]', password);
-    
-    // Click login button
-    await this.page.click('button[type="submit"]');
-    
-    // Wait for navigation after login
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('domcontentloaded');
+    await this.page.getByRole('textbox', { name: 'Enter username' }).fill(username);
+    await this.page.getByRole('textbox', { name: 'Enter password' }).fill(password);
+    await this.page.getByRole('textbox', { name: 'Enter password' }).press('Enter');
+    await this.page.waitForURL(/.*/, { timeout: 60000 });
   }
 }
