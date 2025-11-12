@@ -30,9 +30,6 @@ on:
       MARITAL_STATUS:
         description: 'Marital Status'
         required: false
-      BLOOD_GROUP:
-        description: 'Blood Group'
-        required: false
       BASE_URL:
         description: 'Application Base URL'
         required: true
@@ -52,8 +49,6 @@ jobs:
       STATUS: ${{ github.event.inputs.STATUS }}
       GENDER: ${{ github.event.inputs.GENDER }}
       MARITAL_STATUS: ${{ github.event.inputs.MARITAL_STATUS }}
-      BLOOD_GROUP: ${{ github.event.inputs.BLOOD_GROUP }}
-     
       BASE_URL: ${{ github.event.inputs.BASE_URL }}
 
     steps:
@@ -83,7 +78,6 @@ jobs:
           STATUS: ${{ env.STATUS }}
           GENDER: ${{ env.GENDER }}
           MARITAL_STATUS: ${{ env.MARITAL_STATUS }}
-          BLOOD_GROUP: ${{ env.BLOOD_GROUP }}
           BASE_URL: ${{ env.BASE_URL }}
 
       - name: Upload Playwright test results
