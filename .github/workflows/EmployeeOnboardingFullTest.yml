@@ -33,100 +33,6 @@ on:
       BLOOD_GROUP:
         description: 'Blood Group'
         required: false
-      DEFAULT_SHIFT:
-        description: 'Default Shift'
-        required: false
-      HOLIDAY_LIST:
-        description: 'Holiday List'
-        required: false
-      GRADE:
-        description: 'Grade'
-        required: false
-      DOJ_DAY:
-        description: 'Date of Joining (mm/dd/yyyy)'
-        required: true
-      DOB_DAY:
-        description: 'Date of Birth (mm/dd/yyyy)'
-        required: true
-      # Company details
-      LEAVE_POLICY:
-        description: 'Leave Policy'
-        required: false
-      REPORTS_TO:
-        description: 'Reports To'
-        required: false
-      DESIGNATION:
-        description: 'Designation'
-        required: false
-      HOME_BRANCH:
-        description: 'Home Branch'
-        required: false
-      DEPARTMENT:
-        description: 'Department'
-        required: false
-      EMPLOYEE_BRANCHES:
-        description: 'Employee Branches (comma separated)'
-        required: false
-      EMPLOYMENT_TYPE:
-        description: 'Employment Type'
-        required: false
-      ORG_NAME:
-        description: 'Organization Name'
-        required: false
-      # Emergency Contact
-      EC_NAME:
-        description: 'Emergency Contact Name'
-        required: false
-      EC_PHONE:
-        description: 'Emergency Contact Phone'
-        required: false
-      EC_RELATIONSHIP:
-        description: 'Emergency Contact Relationship'
-        required: false
-      # Bank
-      BANK_NAME:
-        description: 'Bank Name'
-        required: false
-      ACCOUNT_NUMBER:
-        description: 'Account Number'
-        required: false
-      IFSC:
-        description: 'IFSC'
-        required: false
-      # Salary
-      CTC:
-        description: 'CTC'
-        required: false
-      # Attachments
-      ID_PROOF_PATH:
-        description: 'ID Proof Path'
-        required: false
-      ADDRESS_PROOF_PATH:
-        description: 'Address Proof Path'
-        required: false
-      ID_DOC_NUMBER:
-        description: 'ID Document Number'
-        required: false
-      ADDRESS_DOC_NUMBER:
-        description: 'Address Document Number'
-        required: false
-      # Passport
-      PASSPORT_NUMBER:
-        description: 'Passport Number'
-        required: false
-      PASSPORT_ISSUE_DATE:
-        description: 'Passport Issue Date'
-        required: false
-      PASSPORT_EXPIRY_DATE:
-        description: 'Passport Expiry Date'
-        required: false
-      # Login & App
-      USERNAME:
-        description: 'Login Username'
-        required: true
-      PASSWORD:
-        description: 'Login Password'
-        required: true
       BASE_URL:
         description: 'Application Base URL'
         required: true
@@ -147,35 +53,7 @@ jobs:
       GENDER: ${{ github.event.inputs.GENDER }}
       MARITAL_STATUS: ${{ github.event.inputs.MARITAL_STATUS }}
       BLOOD_GROUP: ${{ github.event.inputs.BLOOD_GROUP }}
-      DEFAULT_SHIFT: ${{ github.event.inputs.DEFAULT_SHIFT }}
-      HOLIDAY_LIST: ${{ github.event.inputs.HOLIDAY_LIST }}
-      GRADE: ${{ github.event.inputs.GRADE }}
-      DOJ_DAY: ${{ github.event.inputs.DOJ_DAY }}
-      DOB_DAY: ${{ github.event.inputs.DOB_DAY }}
-      LEAVE_POLICY: ${{ github.event.inputs.LEAVE_POLICY }}
-      REPORTS_TO: ${{ github.event.inputs.REPORTS_TO }}
-      DESIGNATION: ${{ github.event.inputs.DESIGNATION }}
-      HOME_BRANCH: ${{ github.event.inputs.HOME_BRANCH }}
-      DEPARTMENT: ${{ github.event.inputs.DEPARTMENT }}
-      EMPLOYEE_BRANCHES: ${{ github.event.inputs.EMPLOYEE_BRANCHES }}
-      EMPLOYMENT_TYPE: ${{ github.event.inputs.EMPLOYMENT_TYPE }}
-      ORG_NAME: ${{ github.event.inputs.ORG_NAME }}
-      EC_NAME: ${{ github.event.inputs.EC_NAME }}
-      EC_PHONE: ${{ github.event.inputs.EC_PHONE }}
-      EC_RELATIONSHIP: ${{ github.event.inputs.EC_RELATIONSHIP }}
-      BANK_NAME: ${{ github.event.inputs.BANK_NAME }}
-      ACCOUNT_NUMBER: ${{ github.event.inputs.ACCOUNT_NUMBER }}
-      IFSC: ${{ github.event.inputs.IFSC }}
-      CTC: ${{ github.event.inputs.CTC }}
-      ID_PROOF_PATH: ${{ github.event.inputs.ID_PROOF_PATH }}
-      ADDRESS_PROOF_PATH: ${{ github.event.inputs.ADDRESS_PROOF_PATH }}
-      ID_DOC_NUMBER: ${{ github.event.inputs.ID_DOC_NUMBER }}
-      ADDRESS_DOC_NUMBER: ${{ github.event.inputs.ADDRESS_DOC_NUMBER }}
-      PASSPORT_NUMBER: ${{ github.event.inputs.PASSPORT_NUMBER }}
-      PASSPORT_ISSUE_DATE: ${{ github.event.inputs.PASSPORT_ISSUE_DATE }}
-      PASSPORT_EXPIRY_DATE: ${{ github.event.inputs.PASSPORT_EXPIRY_DATE }}
-      USERNAME: ${{ github.event.inputs.USERNAME }}
-      PASSWORD: ${{ github.event.inputs.PASSWORD }}
+     
       BASE_URL: ${{ github.event.inputs.BASE_URL }}
 
     steps:
@@ -206,35 +84,6 @@ jobs:
           GENDER: ${{ env.GENDER }}
           MARITAL_STATUS: ${{ env.MARITAL_STATUS }}
           BLOOD_GROUP: ${{ env.BLOOD_GROUP }}
-          DEFAULT_SHIFT: ${{ env.DEFAULT_SHIFT }}
-          HOLIDAY_LIST: ${{ env.HOLIDAY_LIST }}
-          GRADE: ${{ env.GRADE }}
-          DOJ_DAY: ${{ env.DOJ_DAY }}
-          DOB_DAY: ${{ env.DOB_DAY }}
-          LEAVE_POLICY: ${{ env.LEAVE_POLICY }}
-          REPORTS_TO: ${{ env.REPORTS_TO }}
-          DESIGNATION: ${{ env.DESIGNATION }}
-          HOME_BRANCH: ${{ env.HOME_BRANCH }}
-          DEPARTMENT: ${{ env.DEPARTMENT }}
-          EMPLOYEE_BRANCHES: ${{ env.EMPLOYEE_BRANCHES }}
-          EMPLOYMENT_TYPE: ${{ env.EMPLOYMENT_TYPE }}
-          ORG_NAME: ${{ env.ORG_NAME }}
-          EC_NAME: ${{ env.EC_NAME }}
-          EC_PHONE: ${{ env.EC_PHONE }}
-          EC_RELATIONSHIP: ${{ env.EC_RELATIONSHIP }}
-          BANK_NAME: ${{ env.BANK_NAME }}
-          ACCOUNT_NUMBER: ${{ env.ACCOUNT_NUMBER }}
-          IFSC: ${{ env.IFSC }}
-          CTC: ${{ env.CTC }}
-          ID_PROOF_PATH: ${{ env.ID_PROOF_PATH }}
-          ADDRESS_PROOF_PATH: ${{ env.ADDRESS_PROOF_PATH }}
-          ID_DOC_NUMBER: ${{ env.ID_DOC_NUMBER }}
-          ADDRESS_DOC_NUMBER: ${{ env.ADDRESS_DOC_NUMBER }}
-          PASSPORT_NUMBER: ${{ env.PASSPORT_NUMBER }}
-          PASSPORT_ISSUE_DATE: ${{ env.PASSPORT_ISSUE_DATE }}
-          PASSPORT_EXPIRY_DATE: ${{ env.PASSPORT_EXPIRY_DATE }}
-          USERNAME: ${{ env.USERNAME }}
-          PASSWORD: ${{ env.PASSWORD }}
           BASE_URL: ${{ env.BASE_URL }}
 
       - name: Upload Playwright test results
