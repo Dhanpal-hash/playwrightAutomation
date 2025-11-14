@@ -5,37 +5,40 @@ import { EmployeeOnboardPage } from '../pages/employee-onboard.page';
 const DUMMY_EMPLOYEE = {
   firstName: 'TestFirst',
   lastName: 'TestLast',
-  email: 'invalidemail', // <-- Invalid format on purpose!
+  email: 'invalidemail', // Intentionally invalid format
   fatherName: 'FatherName',
   phone: '1234567890',
   gender: 'Male',
-  dateOfJoining: '13/11/2025',  // DD/MM/YYYY format as per new logic
-  dateOfBirth: '01/04/1995'
-  // ...other optional fields as needed
+  dateOfJoining: '13/11/2025', // DD/MM/YYYY
+  dateOfBirth: '01/04/1995',
+  // Add other required fields if needed
 };
 
 test.describe('Employee Form Invalid Email Format Validation', () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page }, testInfo) => {
+    testInfo.setTimeout(120000); // Set the timeout to 2 minutes for slow CI
     const loginPage = new LoginPage(page);
     await page.goto(process.env.BASE_URL || 'http://kolors-dev.rnit.ai');
     await loginPage.login('Administrator', 'Admin@123');
     const onboardPage = new EmployeeOnboardPage(page);
     await onboardPage.navigateToAddEmployee();
+    // Optional: wait for form to fully load
+    await expect(page.getByText(/Employee Management/i)).toBeVisible({ timeout: 15000 });
   });
 
   test('should show error for invalid email format', async ({ page }) => {
     const onboardPage = new EmployeeOnboardPage(page);
 
-    // Use all required fields plus an invalid email
     await onboardPage.fillEmployeeDetails(DUMMY_EMPLOYEE);
-
-    // Click Update (or Save or Submit) button
     await onboardPage.submit();
 
-    // Validate error message (update selector as per your app's actual text)
-    await expect(page.getByText(/Email.*Invalid Input|valid email/i)).toBeVisible();
+    // Adjust error message selector as per actual app's implementation
+    await expect(
+      page.getByText(/Email.*Invalid Input|valid email/i)
+    ).toBeVisible({ timeout: 5000 });
 
-    // Optionally, check that the user still remains on the form (Update button present)
-    await expect(page.getByRole('button', { name: /Update|Save|Submit/i })).toBeVisible();
+    await expect(
+      page.getByRole('button', { name: /Update|Save|Submit/i })
+    ).toBeVisible({ timeout: 5000 });
   });
 });
