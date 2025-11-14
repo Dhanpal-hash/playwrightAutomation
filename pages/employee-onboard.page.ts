@@ -2,6 +2,18 @@ import { Page } from '@playwright/test';
 import fs from 'fs';
 import path from 'path';
 
+function ddmmyyyyToISO(date: string | undefined): string | undefined {
+  if (!date) return undefined;
+  // If already ISO (YYYY-MM-DD), return as is
+  if (/^\d{4}-\d{2}-\d{2}$/.test(date)) return date;
+  // Convert DD/MM/YYYY to YYYY-MM-DD
+  const parts = date.split('/');
+  if (parts.length !== 3) return undefined;
+  const [dd, mm, yyyy] = parts;
+  if (!dd || !mm || !yyyy) return undefined;
+  return `${yyyy}-${mm.padStart(2, '0')}-${dd.padStart(2, '0')}`;
+}
+
 export class EmployeeOnboardPage {
   constructor(private page: Page) {}
 
@@ -45,11 +57,19 @@ export class EmployeeOnboardPage {
     if (empData.defaultShift) await this.page.getByLabel('Default Shift').selectOption(empData.defaultShift);
     if (empData.holidayList) await this.page.selectOption('select[name="holiday_list"]', { label: empData.holidayList });
     if (empData.grade) await this.page.selectOption('select[name="grade"]', { label: empData.grade });
-    if (empData.dateOfJoining) await this.page.getByLabel('Date of Joining').fill(empData.dateOfJoining);
-    if (empData.dateOfBirth) await this.page.getByLabel('Date of Birth').fill(empData.dateOfBirth);
+
+    // Only fill date if a valid value is present and formatted
+    const joiningISO = ddmmyyyyToISO(empData.dateOfJoining);
+    if (joiningISO) {
+      await this.page.getByLabel('Date of Joining').fill(joiningISO);
+    }
+    const dobISO = ddmmyyyyToISO(empData.dateOfBirth);
+    if (dobISO) {
+      await this.page.getByLabel('Date of Birth').fill(dobISO);
+    }
   }
 
-  async fillCompanyDetails( data:any) {
+  async fillCompanyDetails(data: any) {
     if (data.leavePolicy) await this.page.selectOption('select[name="leave_policy"]', { label: data.leavePolicy });
     if (data.reportsTo) await this.page.getByLabel('Reports To').selectOption(data.reportsTo);
     if (data.designation) await this.page.getByLabel('Designation').selectOption(data.designation);
@@ -78,7 +98,7 @@ export class EmployeeOnboardPage {
     if (data.ifsc) await this.page.getByRole('textbox', { name: /IFSC/i }).fill(data.ifsc);
   }
 
-  async fillSalaryDetails( data: any) {
+  async fillSalaryDetails(data: any) {
     if (data.ctc) await this.page.getByRole('textbox', { name: /CTC/i }).fill(data.ctc.toString());
   }
 
@@ -116,7 +136,7 @@ export class EmployeeOnboardPage {
     }
   }
 
-  async fillPassportDetails(data: any) {
+  async fillPassportDetails( data : any) {
     const passportInputs = await this.page.$$('input[type="text"]');
     if (data.passportNumber && passportInputs[2])
       await passportInputs[2].fill(data.passportNumber);
@@ -160,9 +180,9 @@ export class EmployeeOnboardPage {
         const opts = await selectDropdowns[dropdownBase].$$('option');
         for (let optIdx = 0; optIdx < opts.length; optIdx++) {
           const label = await opts[optIdx].textContent();
-          console.log('dropdown[${dropdownBase}]Option[${optIdx}]: "${label?.trim()}"');
+          console.log(`dropdown[${dropdownBase}]Option[${optIdx}]: "${label?.trim()}"`);
         }
-        console.log('Trying to onselect: "${exp.designation}" from Dropdown[${dropdownBase}]');
+        console.log(`Trying to onselect: "${exp.designation}" from Dropdown[${dropdownBase}]`);
         await selectDropdowns[dropdownBase].selectOption({ label: exp.designation });
       }
       if (exp.branch && selectDropdowns[dropdownBase + 1])
@@ -184,6 +204,6 @@ export class EmployeeOnboardPage {
   }
 
   async submit() {
-    await this.page.getByRole('button', { name: /Save|Update/i }).click();
+    await this.page.getByRole('button', { name: /Save|submit|Update/i }).click();
   }
 }
