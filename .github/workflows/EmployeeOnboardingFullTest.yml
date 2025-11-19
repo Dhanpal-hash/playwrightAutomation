@@ -6,17 +6,23 @@ on:
       EMP_FIRST:
         description: 'Employee First Name'
         required: true
+      EMP_MIDDLE:
+        description: 'Employee Middle Name'
+        required: false
       EMP_LAST:
         description: 'Employee Last Name'
-        required: true
-      EMP_EMAIL:
-        description: 'Employee Email'
         required: true
       EMP_FATHER:
         description: 'Employee Father Name'
         required: false
+      EMP_EMAIL:
+        description: 'Employee Email'
+        required: true
       EMP_PHONE:
         description: 'Employee Phone Number'
+        required: false
+      EMP_ID:
+        description: 'Employee ID'
         required: false
       ROLE:
         description: 'Role'
@@ -24,11 +30,164 @@ on:
       STATUS:
         description: 'Status'
         required: false
+      DOJ:
+        description: 'Date of Joining'
+        required: false
+      DOB:
+        description: 'Date of Birth'
+        required: false
       GENDER:
         description: 'Gender'
         required: true
       MARITAL_STATUS:
         description: 'Marital Status'
+        required: false
+      BLOOD_GROUP:
+        description: 'Blood Group'
+        required: false
+      DEFAULT_SHIFT:
+        description: 'Default Shift'
+        required: false
+      HOLIDAY_LIST:
+        description: 'Holiday List'
+        required: false
+      GRADE:
+        description: 'Grade'
+        required: false
+      LEAVE_POLICY:
+        description: 'Leave Policy'
+        required: false
+      HOME_BRANCH:
+        description: 'Home Branch'
+        required: false
+      DEPARTMENT:
+        description: 'Department'
+        required: false
+      DESIGNATION:
+        description: 'Designation'
+        required: false
+      REPORTS_TO:
+        description: 'Reports To'
+        required: false
+      EMPLOYEE_BRANCHES:
+        description: 'Employee Branches'
+        required: false
+      EMPLOYMENT_TYPE:
+        description: 'Employment Type'
+        required: false
+      PROBATION_DAYS:
+        description: 'Probation Days'
+        required: false
+      ESI_NUMBER:
+        description: 'ESI Number'
+        required: false
+      ORGANIZATION_NAME:
+        description: 'Organization Name'
+        required: false
+      CURRENT_ADDRESS:
+        description: 'Current Address'
+        required: false
+      PERMANENT_ADDRESS:
+        description: 'Permanent Address'
+        required: false
+      AADHAR_NUMBER:
+        description: 'Aadhaar Number'
+        required: false
+      EMERGENCY_CONTACT_NAME:
+        description: 'Emergency Contact Name'
+        required: false
+      EMERGENCY_PHONE_NUMBER:
+        description: 'Emergency Phone Number'
+        required: false
+      EMERGENCY_RELATION:
+        description: 'Emergency Relation'
+        required: false
+      BANK_NAME:
+        description: 'Bank Name'
+        required: false
+      BANK_ACCOUNT_NO:
+        description: 'Bank Account Number'
+        required: false
+      IFSC_CODE:
+        description: 'IFSC Code'
+        required: false
+      PAN_NUMBER:
+        description: 'PAN Number'
+        required: false
+      PF_ACCOUNT:
+        description: 'Provident Fund Account'
+        required: false
+      PF_UAN:
+        description: 'PF UAN'
+        required: false
+      CTC:
+        description: 'CTC'
+        required: false
+      ID_PROOF_PATH:
+        description: 'ID Proof File Path'
+        required: false
+      ID_PROOF_DOC_NO:
+        description: 'ID Proof Document Number'
+        required: false
+      ADDRESS_PROOF_PATH:
+        description: 'Address Proof File Path'
+        required: false
+      ADDRESS_PROOF_DOC_NO:
+        description: 'Address Proof Document Number'
+        required: false
+      PASSPORT_NUMBER:
+        description: 'Passport Number'
+        required: false
+      PASSPORT_DATE_OF_ISSUE:
+        description: 'Passport Date of Issue'
+        required: false
+      PASSPORT_VALID_UPTO:
+        description: 'Passport Valid Upto'
+        required: false
+      PASSPORT_PLACE_OF_ISSUE:
+        description: 'Passport Place of Issue'
+        required: false
+      EDUCATION_SCHOOL:
+        description: 'Education School/University'
+        required: false
+      EDUCATION_QUALIFICATION:
+        description: 'Education Qualification'
+        required: false
+      EDUCATION_LEVEL:
+        description: 'Education Level'
+        required: false
+      EDUCATION_YEAR_OF_PASSING:
+        description: 'Education Year Of Passing'
+        required: false
+      EDUCATION_ADD_MORE:
+        description: 'Add More Education Entries (true/false)'
+        required: false
+      IS_EXPERIENCED_VALUE:
+        description: 'Is Experienced (Yes/No)'
+        required: false
+      INTERNAL_DESIGNATION:
+        description: 'Internal Work Exp Designation'
+        required: false
+      INTERNAL_BRANCH:
+        description: 'Internal Work Exp Branch'
+        required: false
+      INTERNAL_DEPARTMENT:
+        description: 'Internal Work Exp Department'
+        required: false
+      INTERNAL_FROM_DATE:
+        description: 'Internal Work Exp From Date'
+        required: false
+      INTERNAL_TO_DATE:
+        description: 'Internal Work Exp To Date'
+        required: false
+      INTERNAL_ADD_MORE:
+        description: 'Add More Internal Work Exp Entries (true/false)'
+        required: false
+      INTERNAL_FROM_DATE2:
+        description: 'Second Internal From Date'
+        required: false
+      INTERNAL_TO_DATE2:
+        description: 'Second Internal To Date'
         required: false
       BASE_URL:
         description: 'Application Base URL'
@@ -41,15 +200,69 @@ jobs:
 
     env:
       EMP_FIRST: ${{ github.event.inputs.EMP_FIRST }}
+      EMP_MIDDLE: ${{ github.event.inputs.EMP_MIDDLE }}
       EMP_LAST: ${{ github.event.inputs.EMP_LAST }}
-      EMP_EMAIL: ${{ github.event.inputs.EMP_EMAIL }}
       EMP_FATHER: ${{ github.event.inputs.EMP_FATHER }}
+      EMP_EMAIL: ${{ github.event.inputs.EMP_EMAIL }}
       EMP_PHONE: ${{ github.event.inputs.EMP_PHONE }}
+      EMP_ID: ${{ github.event.inputs.EMP_ID }}
       ROLE: ${{ github.event.inputs.ROLE }}
       STATUS: ${{ github.event.inputs.STATUS }}
+      DOJ: ${{ github.event.inputs.DOJ }}
+      DOB: ${{ github.event.inputs.DOB }}
       GENDER: ${{ github.event.inputs.GENDER }}
       MARITAL_STATUS: ${{ github.event.inputs.MARITAL_STATUS }}
+      BLOOD_GROUP: ${{ github.event.inputs.BLOOD_GROUP }}
+      DEFAULT_SHIFT: ${{ github.event.inputs.DEFAULT_SHIFT }}
+      HOLIDAY_LIST: ${{ github.event.inputs.HOLIDAY_LIST }}
+      GRADE: ${{ github.event.inputs.GRADE }}
+      LEAVE_POLICY: ${{ github.event.inputs.LEAVE_POLICY }}
+      HOME_BRANCH: ${{ github.event.inputs.HOME_BRANCH }}
+      DEPARTMENT: ${{ github.event.inputs.DEPARTMENT }}
+      DESIGNATION: ${{ github.event.inputs.DESIGNATION }}
+      REPORTS_TO: ${{ github.event.inputs.REPORTS_TO }}
+      EMPLOYEE_BRANCHES: ${{ github.event.inputs.EMPLOYEE_BRANCHES }}
+      EMPLOYMENT_TYPE: ${{ github.event.inputs.EMPLOYMENT_TYPE }}
+      PROBATION_DAYS: ${{ github.event.inputs.PROBATION_DAYS }}
+      ESI_NUMBER: ${{ github.event.inputs.ESI_NUMBER }}
+      ORGANIZATION_NAME: ${{ github.event.inputs.ORGANIZATION_NAME }}
+      CURRENT_ADDRESS: ${{ github.event.inputs.CURRENT_ADDRESS }}
+      PERMANENT_ADDRESS: ${{ github.event.inputs.PERMANENT_ADDRESS }}
+      AADHAR_NUMBER: ${{ github.event.inputs.AADHAR_NUMBER }}
+      EMERGENCY_CONTACT_NAME: ${{ github.event.inputs.EMERGENCY_CONTACT_NAME }}
+      EMERGENCY_PHONE_NUMBER: ${{ github.event.inputs.EMERGENCY_PHONE_NUMBER }}
+      EMERGENCY_RELATION: ${{ github.event.inputs.EMERGENCY_RELATION }}
+      BANK_NAME: ${{ github.event.inputs.BANK_NAME }}
+      BANK_ACCOUNT_NO: ${{ github.event.inputs.BANK_ACCOUNT_NO }}
+      IFSC_CODE: ${{ github.event.inputs.IFSC_CODE }}
+      PAN_NUMBER: ${{ github.event.inputs.PAN_NUMBER }}
+      PF_ACCOUNT: ${{ github.event.inputs.PF_ACCOUNT }}
+      PF_UAN: ${{ github.event.inputs.PF_UAN }}
+      CTC: ${{ github.event.inputs.CTC }}
+      ID_PROOF_PATH: ${{ github.event.inputs.ID_PROOF_PATH }}
+      ID_PROOF_DOC_NO: ${{ github.event.inputs.ID_PROOF_DOC_NO }}
+      ADDRESS_PROOF_PATH: ${{ github.event.inputs.ADDRESS_PROOF_PATH }}
+      ADDRESS_PROOF_DOC_NO: ${{ github.event.inputs.ADDRESS_PROOF_DOC_NO }}
+      PASSPORT_NUMBER: ${{ github.event.inputs.PASSPORT_NUMBER }}
+      PASSPORT_DATE_OF_ISSUE: ${{ github.event.inputs.PASSPORT_DATE_OF_ISSUE }}
+      PASSPORT_VALID_UPTO: ${{ github.event.inputs.PASSPORT_VALID_UPTO }}
+      PASSPORT_PLACE_OF_ISSUE: ${{ github.event.inputs.PASSPORT_PLACE_OF_ISSUE }}
+      EDUCATION_SCHOOL: ${{ github.event.inputs.EDUCATION_SCHOOL }}
+      EDUCATION_QUALIFICATION: ${{ github.event.inputs.EDUCATION_QUALIFICATION }}
+      EDUCATION_LEVEL: ${{ github.event.inputs.EDUCATION_LEVEL }}
+      EDUCATION_YEAR_OF_PASSING: ${{ github.event.inputs.EDUCATION_YEAR_OF_PASSING }}
+      EDUCATION_ADD_MORE: ${{ github.event.inputs.EDUCATION_ADD_MORE }}
+      IS_EXPERIENCED_VALUE: ${{ github.event.inputs.IS_EXPERIENCED_VALUE }}
+      INTERNAL_DESIGNATION: ${{ github.event.inputs.INTERNAL_DESIGNATION }}
+      INTERNAL_BRANCH: ${{ github.event.inputs.INTERNAL_BRANCH }}
+      INTERNAL_DEPARTMENT: ${{ github.event.inputs.INTERNAL_DEPARTMENT }}
+      INTERNAL_FROM_DATE: ${{ github.event.inputs.INTERNAL_FROM_DATE }}
+      INTERNAL_TO_DATE: ${{ github.event.inputs.INTERNAL_TO_DATE }}
+      INTERNAL_ADD_MORE: ${{ github.event.inputs.INTERNAL_ADD_MORE }}
+      INTERNAL_FROM_DATE2: ${{ github.event.inputs.INTERNAL_FROM_DATE2 }}
+      INTERNAL_TO_DATE2: ${{ github.event.inputs.INTERNAL_TO_DATE2 }}
       BASE_URL: ${{ github.event.inputs.BASE_URL }}
+
 
     steps:
       - name: Checkout repository
@@ -70,14 +283,67 @@ jobs:
         run: npx playwright test tests/employee-onboard.spec.ts --project=chromium
         env:
           EMP_FIRST: ${{ env.EMP_FIRST }}
+          EMP_MIDDLE: ${{ env.EMP_MIDDLE }}
           EMP_LAST: ${{ env.EMP_LAST }}
-          EMP_EMAIL: ${{ env.EMP_EMAIL }}
           EMP_FATHER: ${{ env.EMP_FATHER }}
+          EMP_EMAIL: ${{ env.EMP_EMAIL }}
           EMP_PHONE: ${{ env.EMP_PHONE }}
+          EMP_ID: ${{ env.EMP_ID }}
           ROLE: ${{ env.ROLE }}
           STATUS: ${{ env.STATUS }}
+          DOJ: ${{ env.DOJ }}
+          DOB: ${{ env.DOB }}
           GENDER: ${{ env.GENDER }}
           MARITAL_STATUS: ${{ env.MARITAL_STATUS }}
+          BLOOD_GROUP: ${{ env.BLOOD_GROUP }}
+          DEFAULT_SHIFT: ${{ env.DEFAULT_SHIFT }}
+          HOLIDAY_LIST: ${{ env.HOLIDAY_LIST }}
+          GRADE: ${{ env.GRADE }}
+          LEAVE_POLICY: ${{ env.LEAVE_POLICY }}
+          HOME_BRANCH: ${{ env.HOME_BRANCH }}
+          DEPARTMENT: ${{ env.DEPARTMENT }}
+          DESIGNATION: ${{ env.DESIGNATION }}
+          REPORTS_TO: ${{ env.REPORTS_TO }}
+          EMPLOYEE_BRANCHES: ${{ env.EMPLOYEE_BRANCHES }}
+          EMPLOYMENT_TYPE: ${{ env.EMPLOYMENT_TYPE }}
+          PROBATION_DAYS: ${{ env.PROBATION_DAYS }}
+          ESI_NUMBER: ${{ env.ESI_NUMBER }}
+          ORGANIZATION_NAME: ${{ env.ORGANIZATION_NAME }}
+          CURRENT_ADDRESS: ${{ env.CURRENT_ADDRESS }}
+          PERMANENT_ADDRESS: ${{ env.PERMANENT_ADDRESS }}
+          AADHAR_NUMBER: ${{ env.AADHAR_NUMBER }}
+          EMERGENCY_CONTACT_NAME: ${{ env.EMERGENCY_CONTACT_NAME }}
+          EMERGENCY_PHONE_NUMBER: ${{ env.EMERGENCY_PHONE_NUMBER }}
+          EMERGENCY_RELATION: ${{ env.EMERGENCY_RELATION }}
+          BANK_NAME: ${{ env.BANK_NAME }}
+          BANK_ACCOUNT_NO: ${{ env.BANK_ACCOUNT_NO }}
+          IFSC_CODE: ${{ env.IFSC_CODE }}
+          PAN_NUMBER: ${{ env.PAN_NUMBER }}
+          PF_ACCOUNT: ${{ env.PF_ACCOUNT }}
+          PF_UAN: ${{ env.PF_UAN }}
+          CTC: ${{ env.CTC }}
+          ID_PROOF_PATH: ${{ env.ID_PROOF_PATH }}
+          ID_PROOF_DOC_NO: ${{ env.ID_PROOF_DOC_NO }}
+          ADDRESS_PROOF_PATH: ${{ env.ADDRESS_PROOF_PATH }}
+          ADDRESS_PROOF_DOC_NO: ${{ env.ADDRESS_PROOF_DOC_NO }}
+          PASSPORT_NUMBER: ${{ env.PASSPORT_NUMBER }}
+          PASSPORT_DATE_OF_ISSUE: ${{ env.PASSPORT_DATE_OF_ISSUE }}
+          PASSPORT_VALID_UPTO: ${{ env.PASSPORT_VALID_UPTO }}
+          PASSPORT_PLACE_OF_ISSUE: ${{ env.PASSPORT_PLACE_OF_ISSUE }}
+          EDUCATION_SCHOOL: ${{ env.EDUCATION_SCHOOL }}
+          EDUCATION_QUALIFICATION: ${{ env.EDUCATION_QUALIFICATION }}
+          EDUCATION_LEVEL: ${{ env.EDUCATION_LEVEL }}
+          EDUCATION_YEAR_OF_PASSING: ${{ env.EDUCATION_YEAR_OF_PASSING }}
+          EDUCATION_ADD_MORE: ${{ env.EDUCATION_ADD_MORE }}
+          IS_EXPERIENCED_VALUE: ${{ env.IS_EXPERIENCED_VALUE }}
+          INTERNAL_DESIGNATION: ${{ env.INTERNAL_DESIGNATION }}
+          INTERNAL_BRANCH: ${{ env.INTERNAL_BRANCH }}
+          INTERNAL_DEPARTMENT: ${{ env.INTERNAL_DEPARTMENT }}
+          INTERNAL_FROM_DATE: ${{ env.INTERNAL_FROM_DATE }}
+          INTERNAL_TO_DATE: ${{ env.INTERNAL_TO_DATE }}
+          INTERNAL_ADD_MORE: ${{ env.INTERNAL_ADD_MORE }}
+          INTERNAL_FROM_DATE2: ${{ env.INTERNAL_FROM_DATE2 }}
+          INTERNAL_TO_DATE2: ${{ env.INTERNAL_TO_DATE2 }}
           BASE_URL: ${{ env.BASE_URL }}
 
       - name: Upload Playwright test results
